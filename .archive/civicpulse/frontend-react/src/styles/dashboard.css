@@ -1,0 +1,395 @@
+/* =====================================================
+   CivicPulse AI — Dashboard Styles
+   Integrated map-primary dashboard view
+   ===================================================== */
+
+/* Design Tokens */
+:root {
+  --dashboard-header-height: 64px;
+  --dashboard-footer-height: 40px;
+  --dashboard-sidebar-width: 300px;
+  --color-bg: #f0f4f8;
+  --color-surface: #ffffff;
+  --color-border: #dde3ec;
+  --color-primary: #1a56db;
+  --color-text: #1e2a3a;
+  --color-text-muted: #5a6a80;
+  --color-high: #e53e3e;
+  --color-medium: #dd6b20;
+  --color-low: #3182ce;
+  --color-resolved: #38a169;
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
+}
+
+/* ===== Dashboard Page Layout ===== */
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ===== Header ===== */
+.dashboard-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--dashboard-header-height);
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  opacity: 0.82;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.badge-demo {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.header-location {
+  font-size: 12px;
+  opacity: 0.88;
+}
+
+/* ===== Main Layout ===== */
+.dashboard-main {
+  display: flex;
+  position: fixed;
+  top: var(--dashboard-header-height);
+  bottom: var(--dashboard-footer-height);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+/* ===== Sidebar ===== */
+.dashboard-sidebar {
+  width: var(--dashboard-sidebar-width);
+  min-width: var(--dashboard-sidebar-width);
+  background: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-thumb {
+  background: #c8d0da;
+  border-radius: 4px;
+}
+
+/* ===== Panels ===== */
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-text-muted);
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===== Metrics ===== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.metric-card {
+  background: var(--color-bg);
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+.metric-value {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.metric-label {
+  display: block;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.metric-open .metric-value {
+  color: var(--color-medium);
+}
+
+.metric-high .metric-value {
+  color: var(--color-high);
+}
+
+.metric-resolved .metric-value {
+  color: var(--color-resolved);
+}
+
+/* ===== Filters ===== */
+.filter-group {
+  margin-bottom: 12px;
+}
+
+.filter-group:last-of-type {
+  margin-bottom: 0;
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+}
+
+.filter-chip input[type='radio'] {
+  margin: 0;
+  cursor: pointer;
+}
+
+.filter-chip:hover {
+  background: #f9fbfd;
+  border-color: var(--color-primary);
+}
+
+.filter-chip.active {
+  background: #e0ecff;
+  border-color: var(--color-primary);
+  font-weight: 600;
+}
+
+.btn-reset {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 8px;
+}
+
+.btn-reset:hover {
+  background: #1240a8;
+}
+
+/* ===== Legend ===== */
+.legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-note {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* ===== Count Panel ===== */
+.visible-count {
+  font-size: 12px;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.visible-count strong {
+  font-weight: 700;
+}
+
+/* ===== Map Container ===== */
+.map-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== Footer ===== */
+.dashboard-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--dashboard-footer-height);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  z-index: 999;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.dashboard-footer p {
+  margin: 0;
+}
+
+.dashboard-footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.dashboard-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (max-width: 768px) {
+  :root {
+    --dashboard-header-height: 56px;
+    --dashboard-sidebar-width: 100%;
+  }
+
+  .dashboard-main {
+    flex-direction: column;
+    position: static;
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .dashboard-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .map-container {
+    height: 420px;
+    flex: none;
+  }
+
+  .brand-subtitle,
+  .header-location {
+    display: none;
+  }
+
+  .dashboard-footer {
+    position: static;
+    height: auto;
+    padding: 8px 16px;
+  }
+}

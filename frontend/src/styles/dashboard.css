@@ -1,0 +1,362 @@
+/* =====================================================
+   CivicPulse AI — Dashboard Styles
+   Clean, simple design matching website skeleton
+   ===================================================== */
+
+:root {
+  --color-primary: #244b67;
+  --color-deep: #05344f;
+  --color-amber: #bd8645;
+  --color-surface: #fff;
+  --color-bg: #f7f8fa;
+  --color-border: #e0e5ea;
+  --color-text: #172b3a;
+  --color-text-muted: #5b6875;
+  --color-critical: #b54742;
+  --color-high: #d97706;
+  --color-medium: #f59e0b;
+  --color-low: #10b981;
+  --shadow-sm: 0 1px 2px rgba(23, 43, 58, 0.05);
+  --shadow-md: 0 4px 6px rgba(23, 43, 58, 0.1);
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ===== Hero Section ===== */
+.dashboard-hero {
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, var(--color-deep) 0%, var(--color-primary) 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
+}
+
+.hero-content p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* ===== Metrics Grid ===== */
+.dashboard-metrics {
+  margin-bottom: 48px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.metric-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.metric-item:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.metric-number {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.metric-label {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ===== Dashboard Section ===== */
+.dashboard-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--color-text);
+}
+
+.section-header p {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ===== Map Wrapper ===== */
+.map-wrapper {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  overflow: visible;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
+  position: relative;
+}
+
+.map-wrapper :global(.leaflet-container) {
+  touch-action: manipulation;
+  cursor: grab;
+}
+
+.map-wrapper :global(.leaflet-container.leaflet-touch) {
+  touch-action: manipulation;
+}
+
+.map-wrapper :global(.leaflet-control) {
+  pointer-events: auto;
+  touch-action: auto;
+}
+
+.map-wrapper :global(.leaflet-popup) {
+  pointer-events: auto;
+}
+
+/* ===== Issues Table ===== */
+.issues-table {
+  overflow-x: auto;
+}
+
+.issues-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.issues-table thead {
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.issues-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-size: 12px;
+}
+
+.issues-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.2s ease;
+}
+
+.issues-table tbody tr:hover {
+  background: rgba(36, 75, 103, 0.02);
+}
+
+.issues-table td {
+  padding: 16px;
+  color: var(--color-text);
+}
+
+.issues-table td.title {
+  font-weight: 500;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.issues-table td.location {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ===== Priority Badge ===== */
+.priority-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.priority-critical {
+  background: rgba(181, 71, 66, 0.1);
+  color: var(--color-critical);
+}
+
+.priority-high {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--color-high);
+}
+
+.priority-medium {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-medium);
+}
+
+.priority-low {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-low);
+}
+
+/* ===== Error Box ===== */
+.error-box {
+  background: rgba(181, 71, 66, 0.05);
+  border: 1px solid rgba(181, 71, 66, 0.2);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+}
+
+.error-box h3 {
+  color: var(--color-critical);
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+.error-box p {
+  color: var(--color-text);
+  margin: 0 0 16px 0;
+}
+
+/* ===== Loading Box ===== */
+.loading-box {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-box p {
+  color: var(--color-text-muted);
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 8px 0;
+}
+
+.empty-state p {
+  color: var(--color-text-muted);
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 24px 16px;
+  }
+
+  .dashboard-hero {
+    padding: 24px 16px;
+    margin-bottom: 32px;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .metric-item {
+    padding: 16px;
+  }
+
+  .metric-number {
+    font-size: 28px;
+  }
+
+  .dashboard-section {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .section-header h2 {
+    font-size: 18px;
+  }
+
+  .map-wrapper {
+    height: 300px;
+  }
+
+  .issues-table th,
+  .issues-table td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .issues-table td.title {
+    max-width: 150px;
+  }
+}

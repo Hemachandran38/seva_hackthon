@@ -1,0 +1,363 @@
+================================================================================
+CivicPulse AI — Folder Structure (WHAT TO USE)
+================================================================================
+
+IMPORTANT: Read this to understand WHERE everything is and WHAT TO USE
+
+================================================================================
+🚀 WHAT TO USE (USE THESE)
+================================================================================
+
+1. FRONTEND — Use this for website
+   Location: c:\seva_hackthon\frontend\
+   
+   Inside:
+   ├── src/                 ← React code
+   ├── package.json         ← npm commands
+   ├── vite.config.ts       ← Build settings
+   ├── .env.local           ← Backend URL (already set)
+   └── README.md            ← How to use
+   
+   Commands:
+   cd c:\seva_hackthon\frontend
+   npm install
+   npm run dev             → Opens http://localhost:5173
+
+
+2. BACKEND — API server
+   Location: c:\seva_hackthon\civicpulse-backend\
+   
+   Inside:
+   ├── app/                ← Python code
+   ├── tests/              ← Tests (53 passing)
+   ├── requirements.txt    ← Python packages
+   ├── civicpulse.db       ← Database (auto-created)
+   └── README.md           ← How to use
+   
+   Commands:
+   cd c:\seva_hackthon\civicpulse-backend
+   pip install -r requirements.txt
+   python -m uvicorn app.main:app --host 127.0.0.1 --port 9000
+
+
+3. AI MODEL — Priority scoring
+   Location: c:\seva_hackthon\model\civicpulse_priority_model.pkl
+   
+   Already loaded in backend (automatic)
+   No action needed
+
+
+================================================================================
+📖 DOCUMENTATION — READ THESE IN ORDER
+================================================================================
+
+READ FIRST (Quick Intro):
+1. START_HERE.md (in root)
+   → What is this?
+   → 5-minute quick start
+   → What to do next
+
+
+READ SECOND (Full Overview):
+2. SETUP_COMPLETE.md (in root)
+   → What's installed?
+   → System overview
+   → Configuration
+
+
+READ IF YOU CODE:
+3. frontend/README.md
+   → Frontend overview
+
+4. frontend/QUICK_START.md
+   → Copy/paste setup commands
+
+5. frontend/UNIFIED_FRONTEND_GUIDE.md
+   → How frontend is designed
+
+6. frontend/FRONTEND_STRUCTURE.md
+   → Where each file is
+
+7. civicpulse-backend/README.md
+   → Backend overview
+
+8. civicpulse-backend/BACKEND_STRUCTURE.md
+   → Backend file locations
+
+9. civicpulse-backend/API_DOCUMENTATION.md
+   → What each API does
+
+
+READ IF YOU DEPLOY:
+10. DEPLOYMENT_CHECKLIST.md (in root)
+    → Testing checklist before deploy
+
+
+REFERENCE:
+11. INDEX.md (in root)
+    → Find any documentation
+
+
+================================================================================
+⛔ WHAT NOT TO USE (LEGACY - DO NOT USE)
+================================================================================
+
+These are OLD versions. DO NOT USE THEM:
+
+❌ c:\seva_hackthon\civicpulse\frontend\
+   Old vanilla HTML/CSS/JS version
+
+❌ c:\seva_hackthon\civicpulse\frontend-react\
+   Old React version
+
+❌ c:\seva_hackthon\civicpulse\backend\
+   Old backend version
+
+❌ c:\seva_hackthon\index.html (in root)
+   Loose file (don't use)
+
+❌ c:\seva_hackthon\script.js (in root)
+   Loose file (don't use)
+
+❌ c:\seva_hackthon\style.css (in root)
+   Loose file (don't use)
+
+→ These are archived for reference only
+→ All code is now in: c:\seva_hackthon\frontend\ and civicpulse-backend\
+
+
+================================================================================
+🎯 YOUR FOLDER STRUCTURE (SIMPLIFIED)
+================================================================================
+
+c:\seva_hackthon\
+│
+├── frontend/                    ✅ USE THIS (React Frontend)
+│   ├── src/                    React code (pages, components, etc.)
+│   ├── package.json            npm commands
+│   ├── vite.config.ts
+│   └── README.md               Read this
+│
+├── civicpulse-backend/         ✅ USE THIS (Backend API)
+│   ├── app/                    Python code
+│   ├── tests/                  Tests
+│   ├── requirements.txt        Python packages
+│   └── README.md               Read this
+│
+├── model/                      ✅ AI MODEL (Already integrated)
+│   └── civicpulse_priority_model.pkl
+│
+├── civicpulse/                 ❌ LEGACY (Archive only - don't use)
+│   ├── frontend/
+│   ├── frontend-react/
+│   └── backend/
+│
+└── [DOCUMENTATION FILES]       📖 Read these
+    ├── START_HERE.md           Read first
+    ├── SETUP_COMPLETE.md       Read second
+    ├── WHAT_WAS_DONE.md        Read this for explanation
+    ├── FOLDER_STRUCTURE.txt    This file
+    ├── INDEX.md                Find documentation
+    └── DEPLOYMENT_CHECKLIST.md Testing guide
+
+
+================================================================================
+🚀 QUICK START (5 MINUTES)
+================================================================================
+
+Terminal 1:
+cd c:\seva_hackthon\frontend
+npm install
+npm run dev
+→ Opens http://localhost:5173
+
+
+Terminal 2:
+cd c:\seva_hackthon\civicpulse-backend
+pip install -r requirements.txt
+python -m uvicorn app.main:app --host 127.0.0.1 --port 9000
+→ Backend on http://127.0.0.1:9000
+
+
+Browser:
+Open http://localhost:5173
+
+
+Try This:
+1. Click "Report Issue"
+2. Fill form
+3. Click "Submit"
+4. Copy ID
+5. Click "Track Complaint"
+6. Paste ID
+7. See AI priority score!
+
+
+================================================================================
+📋 FILE MAPPING (What Goes Where)
+================================================================================
+
+FRONTEND CODE:
+Location: c:\seva_hackthon\frontend\src\
+
+pages/
+├── HomePage.tsx             Landing page
+├── ReportIssuePage.tsx       Submit complaint
+├── TrackComplaintPage.tsx    Track by ID
+├── AllIssuesPage.tsx         Browse all
+├── DashboardPage.tsx         Interactive map
+└── NotFoundPage.tsx          404 page
+
+components/
+├── common/                  Buttons, cards, etc.
+├── layout/                  Main layout
+└── map/                     Leaflet map
+
+services/
+└── api.ts                   Calls backend
+
+types/
+├── complaint.ts
+├── priority.ts
+└── ...
+
+styles/
+├── tokens.css               Colors, spacing (change here to rebrand)
+├── global.css               Global styles
+└── components.css           Component styles
+
+
+BACKEND CODE:
+Location: c:\seva_hackthon\civicpulse-backend\app\
+
+main.py                     FastAPI app, routes
+database.py                 Database setup
+models.py                   Data schemas
+
+services/
+├── ai_model_service.py      Loads AI model
+└── priority_engine.py       Calculates priority
+
+routers/
+├── complaints.py            Complaint endpoints
+└── dashboard.py             Dashboard endpoints
+
+
+TESTS:
+Location: c:\seva_hackthon\civicpulse-backend\tests\
+
+test_endpoints.py           API tests
+test_e2e_workflows.py       End-to-end tests
+test_phase2_features.py     AI integration tests
+test_models.py              Model tests
+
+→ Run with: pytest
+
+
+================================================================================
+✅ WHAT WORKS NOW
+================================================================================
+
+✅ Frontend
+   • 6 pages (Home, Report, Track, Issues, Dashboard, 404)
+   • React + TypeScript
+   • Interactive Leaflet map
+   • Real-time dashboard
+   • Responsive design
+   → Ready to use
+
+✅ Backend
+   • 6 API endpoints
+   • Python FastAPI
+   • SQLite database (auto-initialized)
+   • AI model integration
+   → Ready to use
+
+✅ AI Model
+   • Priority scoring (1-100)
+   • Feature extraction
+   • Graceful fallback
+   → Integrated and working
+
+✅ Tests
+   • 53 tests passing
+   • Endpoint tests
+   • E2E tests
+   • AI integration tests
+   → Run: pytest
+
+✅ Documentation
+   • 11 documentation files
+   • 5000+ lines of guides
+   • Copy/paste commands
+   • Clear navigation
+   → Easy to follow
+
+
+================================================================================
+🎓 READING GUIDE
+================================================================================
+
+If you want to...                  Read this file
+
+Understand WHAT you have:          START_HERE.md
+Understand full SYSTEM:            SETUP_COMPLETE.md
+Understand WHAT WAS DONE:          WHAT_WAS_DONE.md (this explains the work)
+Understand FOLDER STRUCTURE:       FOLDER_STRUCTURE.txt (this file)
+Get QUICK SETUP (copy/paste):      frontend/QUICK_START.md
+Understand FRONTEND CODE:          frontend/FRONTEND_STRUCTURE.md
+Understand BACKEND CODE:           civicpulse-backend/BACKEND_STRUCTURE.md
+See API ENDPOINTS:                 civicpulse-backend/API_DOCUMENTATION.md
+TEST before DEPLOY:                DEPLOYMENT_CHECKLIST.md
+Find ANY documentation:            INDEX.md
+
+
+================================================================================
+⚡ COMMON TASKS
+================================================================================
+
+Task: Start development
+cd c:\seva_hackthon\frontend && npm run dev
+cd c:\seva_hackthon\civicpulse-backend && python -m uvicorn app.main:app --host 127.0.0.1 --port 9000
+
+Task: Build for production
+cd c:\seva_hackthon\frontend && npm run build
+→ Creates c:\seva_hackthon\frontend\dist\ (upload this to hosting)
+
+Task: Run tests
+cd c:\seva_hackthon\civicpulse-backend && pytest
+
+Task: Check TypeScript
+cd c:\seva_hackthon\frontend && npm run typecheck
+
+Task: Change colors/styling
+Edit: c:\seva_hackthon\frontend\src\styles\tokens.css
+→ Changes entire app theme
+
+Task: Add new page
+Create: c:\seva_hackthon\frontend\src\pages\MyPage.tsx
+Update: c:\seva_hackthon\frontend\src\App.tsx (add route)
+
+
+================================================================================
+🎯 30-SECOND SUMMARY
+================================================================================
+
+OLD PROBLEM:
+• Multiple frontends (which to use?)
+• Files scattered everywhere
+• No clear structure
+• Hard to understand
+
+NEW SOLUTION:
+✅ ONE frontend (c:\seva_hackthon\frontend\)
+✅ ONE backend (c:\seva_hackthon\civicpulse-backend\)
+✅ ONE AI model (integrated)
+✅ CLEAR documentation (11 files)
+✅ CLEAR folder structure (this file)
+✅ EASY setup (5 minutes)
+
+NEXT: Read START_HERE.md and run the Quick Start commands above
+
+
+================================================================================

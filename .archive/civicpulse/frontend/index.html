@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicPulse AI — Infrastructure Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-icon">⚡</span>
+      <div>
+        <h1 class="brand-title">CivicPulse AI</h1>
+        <p class="brand-subtitle">Infrastructure Fault Monitoring &amp; AI-Assisted Prioritization</p>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="badge" id="api-status-badge">● Connecting…</span>
+      <span class="badge badge-phase">Phase 4</span>
+      <span class="header-location">📍 Coimbatore, Tamil Nadu</span>
+    </div>
+  </header>
+
+  <!-- ===== MAIN LAYOUT ===== -->
+  <main class="app-main">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+
+      <!-- Dashboard metrics -->
+      <section class="panel metrics-panel">
+        <h2 class="panel-title">Dashboard</h2>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-value" id="metric-total">—</span>
+            <span class="metric-label">Total Assets</span>
+          </div>
+          <div class="metric-card metric-open">
+            <span class="metric-value" id="metric-open">—</span>
+            <span class="metric-label">Open</span>
+          </div>
+          <div class="metric-card metric-high">
+            <span class="metric-value" id="metric-high">—</span>
+            <span class="metric-label">High Priority</span>
+          </div>
+          <div class="metric-card metric-resolved">
+            <span class="metric-value" id="metric-resolved">—</span>
+            <span class="metric-label">Resolved</span>
+          </div>
+          <div class="metric-card metric-recurring">
+            <span class="metric-value" id="metric-recurring">—</span>
+            <span class="metric-label">Recurring</span>
+          </div>
+          <div class="metric-card metric-inprog">
+            <span class="metric-value" id="metric-inprog">—</span>
+            <span class="metric-label">In Progress</span>
+          </div>
+        </div>
+        <p class="last-calc" id="last-calc-time">Score last calculated: —</p>
+      </section>
+
+      <!-- Top priority panel -->
+      <section class="panel top-panel">
+        <h2 class="panel-title">🔴 Top Priority</h2>
+        <ul class="top-list" id="top-priority-list">
+          <li class="top-item-placeholder">Loading…</li>
+        </ul>
+      </section>
+
+      <!-- Search -->
+      <section class="panel search-panel">
+        <h2 class="panel-title">Search</h2>
+        <div class="search-row">
+          <input type="text" id="search-input" class="search-input"
+                 placeholder="Asset ID or area name…" aria-label="Search" />
+          <button class="btn-search" id="btn-search" aria-label="Search">🔍</button>
+        </div>
+      </section>
+
+      <!-- Filters -->
+      <section class="panel filter-panel">
+        <h2 class="panel-title">Filters</h2>
+
+        <div class="filter-group">
+          <label class="filter-label">Priority</label>
+          <div class="filter-options">
+            <label class="filter-chip active" data-filter="priority" data-value="all">
+              <input type="radio" name="priority" value="all" checked /> All
+            </label>
+            <label class="filter-chip" data-filter="priority" data-value="high">
+              <input type="radio" name="priority" value="high" /> High
+            </label>
+            <label class="filter-chip" data-filter="priority" data-value="medium">
+              <input type="radio" name="priority" value="medium" /> Medium
+            </label>
+            <label class="filter-chip" data-filter="priority" data-value="low">
+              <input type="radio" name="priority" value="low" /> Low
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Status</label>
+          <div class="filter-options">
+            <label class="filter-chip active" data-filter="status" data-value="all">
+              <input type="radio" name="status" value="all" checked /> All
+            </label>
+            <label class="filter-chip" data-filter="status" data-value="open">
+              <input type="radio" name="status" value="open" /> Open
+            </label>
+            <label class="filter-chip" data-filter="status" data-value="in-progress">
+              <input type="radio" name="status" value="in-progress" /> In Progress
+            </label>
+            <label class="filter-chip" data-filter="status" data-value="resolved">
+              <input type="radio" name="status" value="resolved" /> Resolved
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Recurrence</label>
+          <div class="filter-options">
+            <label class="filter-chip active" data-filter="recurring" data-value="all">
+              <input type="radio" name="recurring" value="all" checked /> All
+            </label>
+            <label class="filter-chip" data-filter="recurring" data-value="recurring">
+              <input type="radio" name="recurring" value="recurring" /> Recurring Only
+            </label>
+          </div>
+        </div>
+
+        <button class="btn-reset" id="reset-filters">Reset Filters</button>
+      </section>
+
+      <!-- Legend -->
+      <section class="panel legend-panel">
+        <h2 class="panel-title">Map Legend</h2>
+        <ul class="legend-list">
+          <li class="legend-item"><span class="legend-dot legend-red"></span><span>High Priority (AI score ≥ 70)</span></li>
+          <li class="legend-item"><span class="legend-dot legend-orange"></span><span>Medium Priority (40–69)</span></li>
+          <li class="legend-item"><span class="legend-dot legend-blue"></span><span>Low Priority (&lt; 40)</span></li>
+          <li class="legend-item"><span class="legend-dot legend-green"></span><span>Resolved</span></li>
+          <li class="legend-item"><span class="legend-dot legend-recurring"></span><span>Recurring fault ⟳</span></li>
+        </ul>
+        <p class="legend-note">
+          AI scores are decision-support estimates based on severity, recurrence,
+          pending time, and public impact. They are not validated predictions.
+        </p>
+      </section>
+
+      <!-- Visible count -->
+      <section class="panel count-panel">
+        <p class="visible-count">
+          Showing <strong id="visible-count">0</strong> of
+          <strong id="total-count">0</strong> complaints
+        </p>
+      </section>
+
+    </aside>
+
+    <!-- ===== MAP + OVERLAYS ===== -->
+    <div class="map-wrapper">
+      <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Loading AI recommendations…</p>
+      </div>
+      <div id="api-error-banner" class="api-error-banner hidden">
+        <span>⚠️ <span id="api-error-msg">Cannot reach API.</span></span>
+        <button id="btn-retry" class="btn-retry">Retry</button>
+      </div>
+      <div id="map"></div>
+      <div id="map-error" class="map-error hidden">
+        <p>⚠️ Map failed to load. Check your internet connection and reload.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Lifecycle Modal (Phase 4) -->
+  <div id="lifecycle-modal" class="lifecycle-modal hidden"></div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden" role="alert" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>
+      CivicPulse AI — Phase 4 Lifecycle, Verification &amp; Audit &nbsp;|&nbsp;
+      Tiles &copy; <a href="https://www.esri.com/" target="_blank" rel="noopener">Esri</a>
+      &nbsp;|&nbsp; Scores are decision-support estimates only.
+    </p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
