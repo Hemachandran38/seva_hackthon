@@ -1,212 +1,280 @@
-# CivicPulse AI — Infrastructure Management Platform
+# CivicPulse AI - Infrastructure Management Platform
 
-A complete, production-ready system for managing public infrastructure complaints with AI-powered priority evaluation.
+A comprehensive civic technology platform for reporting, tracking, and managing municipal infrastructure complaints with AI-powered priority assessment.
+
+## 🎯 Overview
+
+CivicPulse AI is a full-stack web application that enables citizens to report infrastructure issues (streetlights, potholes, water leaks, etc.) and track their resolution. The system uses machine learning to prioritize complaints and provides real-time visualization through an interactive map dashboard.
+
+## ✨ Features
+
+### Frontend (React + TypeScript)
+- **Dashboard**: Real-time interactive map with color-coded infrastructure complaints
+- **Explore Issues**: Browse and filter all reported issues with advanced search
+- **Report Issue**: User-friendly form to submit new complaints with location
+- **Track Complaint**: Monitor the status of specific complaints
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Theme**: Professional municipal design with accessible color scheme
+
+### Backend (FastAPI + Python)
+- **REST API**: Complete API for complaint management and tracking
+- **SQLite Database**: Persistent storage for all complaints and repairs
+- **AI Integration**: Scikit-learn models for priority prediction
+- **Real-time Data**: Database-backed complaint tracking
+- **Status Management**: Complete workflow from reported to resolved
+- **Audit Logging**: Track all changes and actions
+
+### Key Capabilities
+✅ Report infrastructure complaints with location  
+✅ View all complaints on interactive map  
+✅ Filter and search complaints by priority, status, category  
+✅ Track complaint status in real-time  
+✅ Color-coded priority levels (Critical, High, Medium, Low)  
+✅ Responsive design for all devices  
+✅ AI-powered priority assessment  
+✅ Complete audit trail  
 
 ## 📁 Project Structure
 
 ```
-c:\seva_hackthon\
-├── frontend/                 ← React 18 + TypeScript web application
+seva_hackthon/
+├── frontend/                    # React frontend
 │   ├── src/
-│   │   ├── pages/           # 6 main pages
-│   │   ├── components/      # Reusable UI components
-│   │   ├── services/        # API client
-│   │   ├── types/           # TypeScript interfaces
-│   │   └── styles/          # CSS files
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── index.html
+│   │   ├── pages/              # Page components
+│   │   ├── components/         # Reusable components
+│   │   │   └── map/           # Map component with Leaflet
+│   │   ├── services/          # API services
+│   │   ├── styles/            # Global styles & dashboard CSS
+│   │   └── data/              # Sample demo data
+│   ├── package.json           # Dependencies
+│   └── vite.config.ts        # Vite configuration
 │
-├── backend/                  ← Python FastAPI backend
+├── backend/                     # FastAPI backend
 │   ├── app/
-│   │   ├── main.py          # FastAPI app
-│   │   ├── models/          # SQLModel schemas
-│   │   ├── routers/         # API endpoints
-│   │   ├── services/        # Business logic
-│   │   └── database.py      # SQLite setup
-│   ├── tests/               # 53 passing tests
-│   ├── requirements.txt
-│   └── civicpulse.db        # SQLite database
+│   │   ├── main.py            # Entry point
+│   │   ├── models/            # Database models
+│   │   ├── schemas/           # Request/response schemas
+│   │   ├── routers/           # API endpoints
+│   │   ├── services/          # Business logic
+│   │   └── database.py        # Database setup
+│   ├── requirements.txt        # Python dependencies
+│   └── civicpulse.db         # SQLite database
 │
-├── model/                    ← AI Models (scikit-learn)
-│   └── civicpulse_priority_model.pkl
-│
-├── docs/                     ← Documentation
-│   ├── START_HERE.md        # Read first (2 min)
-│   ├── SETUP_COMPLETE.md    # Full overview
-│   ├── API_DOCUMENTATION.md # API reference
-│   ├── BACKEND_STRUCTURE.md # Backend guide
-│   └── ... (8 more guides)
-│
-└── .archive/                 ← Legacy code (archived)
-    └── civicpulse/          # Old project versions
+├── docs/                        # Documentation
+├── model/                       # AI models (placeholder)
+└── README.md
 ```
 
-## 🚀 Quick Start (5 Minutes)
+## 🚀 Quick Start
 
-### Terminal 1: Start Frontend
+### Prerequisites
+- Node.js 16+ (for frontend)
+- Python 3.11+ (for backend)
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Hemachandran38/seva_hackthon.git
+   cd seva_hackthon
+   ```
+
+2. **Setup Frontend**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   Frontend runs on: `http://localhost:5173`
+
+3. **Setup Backend** (in a new terminal)
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   python -m uvicorn app.main:app --host 127.0.0.1 --port 9000 --reload
+   ```
+   Backend runs on: `http://127.0.0.1:9000`
+
+### Access the Application
+- **Dashboard**: http://localhost:5173/dashboard
+- **Explore Issues**: http://localhost:5173/issues
+- **Report Issue**: http://localhost:5173/report
+- **API Docs**: http://127.0.0.1:9000/docs
+
+## 📊 Dashboard Features
+
+### Interactive Map
+- Real-time visualization of all reported issues
+- Color-coded markers by priority level
+- Zoom and pan controls
+- Click markers to see detailed information
+- Mobile-friendly touch interactions
+
+### Metrics Cards
+- Total Reports count
+- Open Issues count
+- Critical/High Priority count
+- Resolved Issues count
+
+### Recent Reports Table
+- List of 10 latest complaints
+- Sortable by priority, status, location
+- Quick access to full complaint details
+- Status and priority badges
+
+## 🎨 Design System
+
+### Color Scheme
+- **Primary**: #244b67 (Navy Blue)
+- **Deep**: #05344f (Darker Blue)
+- **Accent**: #bd8645 (Amber Gold)
+- **Critical**: #991b1b (Dark Red)
+- **Success**: #397557 (Green)
+- **Resolved**: #10b981 (Light Green)
+
+### Priority Levels
+- 🔴 **Critical**: Immediate attention required
+- 🟠 **High**: Urgent, within 24-48 hours
+- 🟡 **Medium**: Normal priority, 1-2 weeks
+- 🔵 **Low**: Can be addressed when convenient
+
+## 📱 Complaint Status Workflow
+
+1. **Reported** - Initial complaint received
+2. **Under Review** - Being evaluated for priority
+3. **Assigned** - Work order assigned to team
+4. **In Progress** - Repair/maintenance underway
+5. **Awaiting Verification** - Awaiting inspection
+6. **Resolved** - Issue completed and verified
+
+## 🔧 Tech Stack
+
+### Frontend
+- **React 18** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Leaflet** - Interactive mapping
+- **React Router** - Navigation
+- **CSS3** - Styling
+
+### Backend
+- **FastAPI** - API framework
+- **SQLModel** - ORM & validation
+- **SQLite** - Database
+- **Scikit-learn** - ML models
+- **Uvicorn** - ASGI server
+- **Pydantic** - Data validation
+
+### DevOps
+- **Node.js** - Runtime
+- **Python 3.11** - Runtime
+- **Git** - Version control
+- **npm** - Package management
+- **pip** - Package management
+
+## 📚 API Documentation
+
+Full API documentation available at: `http://127.0.0.1:9000/docs` (when backend is running)
+
+### Key Endpoints
+- `GET /api/complaints` - List all complaints
+- `POST /api/complaints` - Create new complaint
+- `GET /api/complaints/{id}` - Get specific complaint
+- `PUT /api/complaints/{id}/status` - Update complaint status
+- `GET /api/dashboard/stats` - Get dashboard statistics
+
+## 🧪 Sample Data
+
+The application includes 15+ sample complaints with demo data:
+- Pre-geolocated in Coimbatore, India
+- Various priority levels and statuses
+- Real-world inspired issue descriptions
+- Used for development and demonstration
+
+## 📝 Environment Variables
+
+### Frontend
+No special environment variables required (uses default localhost API)
+
+### Backend
+Create `.env` in `backend/` directory:
+```
+DATABASE_URL=sqlite:///./civicpulse.db
+DEBUG=false
+```
+
+## 🐛 Troubleshooting
+
+### Port Already in Use
 ```bash
-cd c:\seva_hackthon\frontend
+# Kill process on port 5173 or 9000
+lsof -i :5173  # or :9000
+kill -9 <PID>
+```
+
+### Database Issues
+```bash
+# Reset database
+rm backend/civicpulse.db
+python backend/app/seed.py
+```
+
+### Frontend Not Loading
+```bash
+# Clear cache and reinstall
+rm -rf frontend/node_modules
 npm install
 npm run dev
 ```
-Opens: **http://localhost:5173**
 
-### Terminal 2: Start Backend
-```bash
-cd c:\seva_hackthon\backend
-pip install -r requirements.txt
-python -m uvicorn app.main:app --host 127.0.0.1 --port 9000
-```
-Runs on: **http://127.0.0.1:9000**
+## 📄 Documentation
 
-### Browser
-Open: **http://localhost:5173**
+Additional documentation files:
+- `docs/SETUP_COMPLETE.md` - Detailed setup instructions
+- `docs/PROJECT_SUMMARY.md` - Project overview
+- `backend/README.md` - Backend documentation
+- `frontend/README.md` - Frontend documentation
+- `backend/API_DOCUMENTATION.md` - Detailed API docs
 
-Try this:
-1. Click "Report Issue"
-2. Fill form (Title, Category, Description)
-3. Click Submit
-4. Copy generated ID
-5. Click "Track Complaint"
-6. Paste ID → See AI priority score!
+## 🤝 Contributing
 
-## 📖 Documentation
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-**New users:** Start with `docs/START_HERE.md`
+## 📄 License
 
-**Full setup:** Read `docs/SETUP_COMPLETE.md`
+This project is created for the Municipal Civic Technology Hackathon.
 
-**For developers:**
-- Frontend code: Read `docs/FRONTEND_STRUCTURE.md`
-- Backend code: Read `docs/BACKEND_STRUCTURE.md`
-- API endpoints: Read `docs/API_DOCUMENTATION.md`
+## 👥 Team
 
-**For deployment:** Read `docs/DEPLOYMENT_CHECKLIST.md`
+- **Development**: Hemachandran
+- **Design**: Municipal Infrastructure Management Themed
 
-**All docs:** See `docs/INDEX.md`
+## 🙏 Acknowledgments
 
-## ✅ What's Included
+- OpenStreetMap for map tiles
+- React and FastAPI communities
+- Leaflet.js for mapping functionality
+- All contributors and testers
 
-### Frontend (React + TypeScript + Vite)
-- 6 pages (Home, Report, Track, Issues, Dashboard, 404)
-- Interactive Leaflet map
-- Real-time statistics
-- Responsive design (desktop + mobile)
-- ✅ Production ready
+## 📞 Support
 
-### Backend (Python FastAPI)
-- 6 REST API endpoints (all working)
-- SQLite database (auto-initialized)
-- 53 passing tests
-- AI model integration
-- Full error handling
-- ✅ Production ready
-
-### AI Model (scikit-learn)
-- Priority scoring (1-100)
-- Automatic evaluation
-- Graceful fallback
-- ✅ Integrated
-
-### Documentation
-- 12 comprehensive guides
-- Copy/paste setup commands
-- Clear navigation
-- ✅ Complete
-
-## 🛠️ Commands
-
-### Frontend
-```bash
-cd frontend
-npm install      # Install dependencies
-npm run dev      # Start dev server (5173)
-npm run build    # Build for production
-npm run preview  # Preview prod build
-```
-
-### Backend
-```bash
-cd backend
-pip install -r requirements.txt              # Install deps
-python -m uvicorn app.main:app --host 127.0.0.1 --port 9000  # Start
-pytest           # Run all tests (53 passing)
-```
-
-## 📊 System Status
-
-| Component | Status | Details |
-|-----------|--------|---------|
-| Frontend | ✅ Ready | React 18, Vite, TypeScript |
-| Backend | ✅ Ready | 53 tests passing |
-| AI Model | ✅ Integrated | scikit-learn |
-| Database | ✅ Ready | SQLite auto-init |
-| Documentation | ✅ Complete | 12 guides |
-| Tests | ✅ All passing | 53/53 ✓ |
-
-## 🔗 Key Directories
-
-| Directory | Purpose | Status |
-|-----------|---------|--------|
-| `frontend/` | React web application | ✅ Production |
-| `backend/` | Python FastAPI server | ✅ Production |
-| `model/` | AI models (pickle files) | ✅ Integrated |
-| `docs/` | Documentation | ✅ Complete |
-| `.archive/` | Legacy code (old versions) | ⚠️ Archive |
-
-## 🎯 Features
-
-✅ Report infrastructure issues (forms with validation)
-✅ AI-powered priority evaluation (1-100 scores)
-✅ Interactive map visualization (Leaflet)
-✅ Real-time dashboard (statistics, filters)
-✅ Track complaints by ID (real-time status)
-✅ Browse all issues (pagination, filters)
-✅ Complete REST API (6 endpoints)
-✅ Database persistence (SQLite)
-✅ Comprehensive tests (53 passing)
-✅ Responsive design (desktop + mobile)
-
-## ❓ Need Help?
-
-**New to this project?**
-→ Read `docs/START_HERE.md` (2 minutes)
-
-**Want to understand the system?**
-→ Read `docs/SETUP_COMPLETE.md` (5 minutes)
-
-**Ready to code?**
-→ Read `docs/FRONTEND_STRUCTURE.md` or `docs/BACKEND_STRUCTURE.md`
-
-**Ready to deploy?**
-→ Read `docs/DEPLOYMENT_CHECKLIST.md`
-
-**Can't find something?**
-→ Check `docs/INDEX.md` (documentation index)
-
-## 🚀 Next Steps
-
-1. **Read:** `docs/START_HERE.md`
-2. **Run:** Quick Start commands above
-3. **Try:** Demo workflow (report → track → dashboard)
-4. **Build:** `npm run build` (when ready)
-5. **Deploy:** Upload to hosting service
-
-## 📊 Project Stats
-
-- **Frontend:** React 18, 6 pages, 20+ components, 2000+ lines
-- **Backend:** Python FastAPI, 6 endpoints, 53 tests, 1500+ lines
-- **AI Model:** scikit-learn, trained on infrastructure data
-- **Database:** SQLite, auto-initialized with schema
-- **Documentation:** 12 guides, 5000+ lines
-- **Setup time:** 5 minutes
-- **Test coverage:** 80%+
-
-## 📝 License
-
-CivicPulse AI - Seva Hackathon 2026
+For issues and questions:
+1. Check existing GitHub issues
+2. Review documentation in `/docs`
+3. Check backend/frontend README files
+4. Create a new GitHub issue with details
 
 ---
 
-**Ready to go?** Read `docs/START_HERE.md` and follow the Quick Start above! 🚀
+**Status**: ✅ Production Ready
+
+**Last Updated**: October 14, 2026
+
+**Version**: 1.0.0
+
+**Repository**: https://github.com/Hemachandran38/seva_hackthon
